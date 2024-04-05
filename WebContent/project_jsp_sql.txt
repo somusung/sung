@@ -1,0 +1,39 @@
+-- sys 최고 관리자 계정에서 계정과 권한 생성
+create user jsp identified by 1234;
+grant connect, resource to jsp;
+grant create view to jsp;
+
+-- 회원 테이블 생성
+create table member (
+id varchar2(30) primary key,
+name varchar2(30),
+password varchar2(30),
+gender varchar2(9),
+age number(3),
+birthday date,
+email varchar2(60),
+num number,
+joinday date default sysdate
+);
+
+insert into member(id, name, password, gender, age, birthday, email, num)
+values('admin', '홍길동', '1234', '남', 33, to_date(20210118, 'yyyy-mm-dd'), 'min@naver.com', 0);
+commit;
+
+--게시판 테이블 생성 
+create table board(
+num number primary key,
+name varchar2(30),
+password varchar2(30),
+subject varchar2(300),
+content varchar2(4000),
+attachedfile varchar2(100),
+answernum number,
+answerlev number,
+answerseq number,
+readcount number,
+writeday date default sysdate,
+id varchar2(30)
+);
+
+
